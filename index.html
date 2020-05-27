@@ -5,37 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
+    
 </head>
 
 <body>
-    <div id = "container">
-        <input type = "text" id = "display"></input>
-        <div id = "numbersContainer">
-            <button class = "operators">(</button>
-            <button class = "operators">)</button>
-            <button class = "operators">%</button>
-            <button class = "operators">AC</button>
+    <div class = "calculator" data-previousKey>
+        <div class = "display">0</div>
+        <div class = "calculator_keys">
+            <button class ="keys operators" data-action = "leftParentheses">(</button>
+            <button class ="keys operators" data-action = "rightParentheses">)</button>
+            <button class ="keys operators" data-action = "modulo">%</button>
+            <button class ="keys operators" data-action = "clear" id = "clear">AC</button>
 
-            <button class = "numbers">7</button>
-            <button class = "numbers">8</button>
-            <button class = "numbers">9</button>
-            <button class = "operators">/</button>
+            <button class ="keys numbers">7</button>
+            <button class ="keys numbers">8</button>
+            <button class ="keys numbers">9</button>
+            <button class ="keys operators" data-action = "division">/</button>
 
-            <button class = "numbers">4</button>
-            <button class = "numbers">5</button>
-            <button class = "numbers">6</button>
-            <button class = "operators">x</button>
+            <button class = "keys numbers">4</button>
+            <button class = "keys numbers">5</button>
+            <button class = "keys numbers">6</button>
+            <button class = "keys operators" data-action = "multiplication">&times;</button>
 
-            <button class = "numbers">1</button>
-            <button class = "numbers">2</button>
-            <button class = "numbers">3</button>
-            <button class = "operators">-</button>
+            <button class = "keys numbers">1</button>
+            <button class = "keys numbers">2</button>
+            <button class = "keys numbers">3</button>
+            <button class = "keys operators" data-action = "subtraction">-</button>
 
-            <button class = "numbers">0</button>
-            <button class = "numbers">.</button>
-            <button class = "numbers" id="equals">=</button>
-            <button class = "operators">+</button>
+            <button class = "keys numbers">0</button>
+            <button class = "keys numbers" data-action = "decimal">.</button>
+            <button class = "keys numbers" data-action = "equals" id = "equals">=</button>
+            <button class = "keys operators" data-action = "addition">+</button>
         </div>
         
        
@@ -47,4 +47,5 @@
         
         
     </div>
+    <script type="text/javascript" src="script.js"></script>
 </body>

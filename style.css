@@ -1,4 +1,4 @@
-#container {
+.calculator {
     border: .1px solid lightgrey;
     margin: 0px auto;
     margin-bottom: 20px;
@@ -6,7 +6,7 @@
     background-color: white;
 }
 
-#numbersContainer{
+.calculator_keys{
     display: grid;
     grid-template-columns: repeat(4, auto [col-start]);
     
@@ -16,21 +16,29 @@ button{
     background-color: lightgrey;
     border: 1px solid black;
     padding: 5px;
-    margin: 2.5px;
+    margin: 1px;
 }
 
 .operators{
-    background-color: slategray;
+    background-color: rgb(179, 194, 209);
     border: 1 px solid black;
 }
 
 #equals{
-    background-color: rgb(37, 106, 255);
+    background-color: rgb(224, 128, 2);
 }
 
-#display {
+.display {
+    font-size: 20px;
+    padding: 9px;
+    text-align: right;
     box-sizing: border-box;
-    margin: 2px;
+    background: black;
+    color: white;
     height: 40px;
     width: 100%;
+}
+
+.pressed{
+    background-color: rgb(81, 87, 92);
 }
