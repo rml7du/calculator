@@ -42,7 +42,7 @@ function operate (a, x, b){
 
 
 
-
+//----------------------------------Calulator Button Clicks--------------------------------//
 
 
 const calculator = document.querySelector('.calculator');
@@ -105,12 +105,12 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
               if(operator === ''){
                   return;
               } else if(previousKeyType === 'equals'){
-                  display.textContent = operate(firstNum,operator, secondNum);
-                  firstNum = display.textContent;
+                  display.textContent = operate(firstNum, operator, secondNum);
+                  firstNum = parseFloat(display.textContent);
               } else {
                 secondNum = parseFloat(display.textContent);
                 display.textContent = operate(firstNum, operator, secondNum);
-                firstNum= display.textContent;
+                firstNum = parseFloat(display.textContent);
               }
                 calculator.dataset.previousKey = 'equals';
                 clear.textContent = 'AC';
