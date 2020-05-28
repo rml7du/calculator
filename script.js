@@ -60,7 +60,7 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
 
         Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
 
-
+        //----------------------------------Number Click--------------------------------//
         if(!action){
             if (displayedNumber === '0' || previousKeyType === 'operator'){
                 display.textContent = keyContent; 
@@ -70,6 +70,7 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
             calculator.dataset.previousKey = 'number';
             clear.textContent = 'CE';
             clear.classList.add('CE');
+        //----------------------------------Operator Click--------------------------------//
         } else if (
             action === 'addition' ||
             action === 'subtraction' ||
@@ -77,16 +78,18 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
             action === 'division' ||
             action === 'modulo'
           ) {
-            if (previousKeyType === 'operator'){  //this is the next step, to get this section to work
+            if (operator != '' && previousKeyType != 'equals'){ 
+                secondNum = parseFloat(display.textContent);
                 display.textContent = operate(firstNum, operator, secondNum);
-                firstNum = display.textContent;
+                firstNum = parseFloat(display.textContent);
+                operator = action;
             } else {
             firstNum = parseFloat(displayedNumber);
             operator = action;
             }
             calculator.dataset.previousKey = 'operator';
             key.classList.add("pressed");
-            
+        //----------------------------------Decimal Click--------------------------------// 
           } else if (action === 'decimal'){
             let myStr = displayedNumber.toString();
             if (previousKeyType === 'operator'){
@@ -97,8 +100,11 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
               return;
             }
             calculator.dataset.previousKey = 'decimal';
+        //----------------------------------Equals Click--------------------------------//
           } else if (action === 'equals'){
-              if(previousKeyType === 'equals'){
+              if(operator === ''){
+                  return;
+              } else if(previousKeyType === 'equals'){
                   display.textContent = operate(firstNum,operator, secondNum);
                   firstNum = display.textContent;
               } else {
@@ -107,6 +113,9 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
                 firstNum= display.textContent;
               }
                 calculator.dataset.previousKey = 'equals';
+                clear.textContent = 'AC';
+                clear.classList.remove('CE');
+        //----------------------------------Clear Click--------------------------------//
           } else if (action === 'clear'){
               if (clear.textContent === 'CE'){
                 display.textContent = firstNum;
