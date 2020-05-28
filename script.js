@@ -26,17 +26,11 @@ function mod(a,b){
 }
 
 function operate (a, x, b){
-    if ( x === 'addition'){
-        return add(a,b);
-    } else if ( x === 'subtraction' ){
-        return subtract(a,b);
-    } else if (x === 'multiplication'){
-        return multiply(a,b);
-    } else if (x === 'division'){
-        return divide(a,b);
-    } else if (x === 'modulo'){
-        return mod(a,b);
-    }
+    if ( x === 'addition') return add(a,b);
+    if ( x === 'subtraction' ) return subtract(a,b);
+    if (x === 'multiplication') return multiply(a,b);
+    if (x === 'division') return divide(a,b);
+    if (x === 'modulo') return mod(a,b);
 }
 
 
@@ -57,12 +51,13 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
         const keyContent = key.textContent;
         const displayedNumber = display.textContent;
         const previousKeyType = calculator.dataset.previousKey;
+        const isNegative = calculator.dataset.negative;
 
         Array.from(key.parentNode.children).forEach(k => k.classList.remove('pressed'));
 
         //----------------------------------Number Click--------------------------------//
         if(!action){
-            if (displayedNumber === '0' || previousKeyType === 'operator'){
+            if ((displayedNumber === '0' || previousKeyType === 'operator')&& isNegative!='negative'){
                 display.textContent = keyContent; 
             } else {
                 display.textContent = displayedNumber + keyContent;
@@ -78,7 +73,12 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
             action === 'division' ||
             action === 'modulo'
           ) {
-            if (operator != '' && previousKeyType != 'equals'){ 
+            if ((operator === 'multiplication' || operator === 'division') & action === 'subtraction') {
+                display.textContent = '-';
+                calculator.dataset.negative = 'negative';
+                return;
+                //need to add negative function
+            } else if (operator != '' && previousKeyType != 'equals'){ 
                 secondNum = parseFloat(display.textContent);
                 display.textContent = operate(firstNum, operator, secondNum);
                 firstNum = parseFloat(display.textContent);
@@ -127,6 +127,7 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
                   display.textContent = 0;
               }
               calculator.dataset.previousKey = 'clear';
+              calculator.dataset.negative = '';
           }
 
     }
