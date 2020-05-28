@@ -73,7 +73,7 @@ keys.forEach( (button) => { button.addEventListener('click', e => {
             action === 'division' ||
             action === 'modulo'
           ) {
-            if ((operator === 'multiplication' || operator === 'division') & action === 'subtraction') {
+            if ((operator === 'multiplication' || operator === 'division' || operator === 'modulo') & action === 'subtraction') {
                 display.textContent = '-';
                 calculator.dataset.negative = 'negative';
                 return;
